@@ -1,0 +1,21 @@
+  name: monorec
+  channels:
+    - pytorch
+    - conda-forge
+    - anaconda
+  dependencies:
+    - python=3.6
+    - pytorch=1.5.0
+    - torchvision
+    - jupyter
+    - tensorboard
+    - opencv=4.2.0
+    - scipy
+    - kornia
+    - scikit-image
+    - tqdm
+    - tensorboardx
+    - pip
+    - pip:
+        - pykitti
+        - colour_demosaicing
