@@ -9,7 +9,7 @@ This repository is the official implementation of the paper:
 > 
 > [**CVPR 2021** (arXiv)](https://arxiv.org/abs/2011.11814)
 
-<a href="https://youtu.be/-gDSBIm0vgk"><div style="text-align:center"><img src="./pictures/frames.gif" style="height:auto;width:50%"/><img src="./pictures/pointcloud.gif" style="height:auto;width:50%"/></div></a>
+<a href="https://youtu.be/-gDSBIm0vgk"><div style="text-align:center"><img src="./pictures/frames_pointcloud.gif" style="height:auto;width:70%px"/></div></a>
 
 If you find our work useful, please consider citing our paper:
 ```
