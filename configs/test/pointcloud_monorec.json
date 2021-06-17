@@ -1,0 +1,43 @@
+{
+  "name": "Pointcloud Creation",
+  "n_gpu": 8,
+  "output_dir": "saved/pointclouds/monorec",
+  "file_name": "seequence_07.ply",
+  "roi": [
+    40,
+    256,
+    48,
+    464
+  ],
+  "start": 0,
+  "end": -1,
+  "max_d": 20,
+  "use_mask": true,
+  "arch": {
+    "type": "MonoRecModel",
+    "args": {
+      "pretrain_mode": 0,
+      "checkpoint_location": [
+          "saved/checkpoints/monorec_depth_ref.pth"
+      ]
+    }
+  },
+  "data_set": {
+    "type": "KittiOdometryDataset",
+    "args": {
+      "dataset_dir": "../data/dataset",
+      "depth_folder": "image_depth_annotated",
+      "frame_count": 2,
+      "lidar_depth": true,
+      "sequences": [
+        "04"
+      ],
+      "target_image_size": [
+        256,
+        512
+      ],
+      "use_color": true,
+      "use_dso_poses": true
+    }
+  }
+}

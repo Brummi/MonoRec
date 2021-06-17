@@ -1,0 +1,50 @@
+{
+  "name": "Pointcloud Creation",
+  "n_gpu": 8,
+  "output_dir": "saved/pointclouds/monorec",
+  "file_name": "oxrc.ply",
+  "roi": [
+    50,
+    320,
+    60,
+    680
+  ],
+  "start": 0,
+  "end": -1,
+  "max_d": 20,
+  "use_mask": true,
+  "arch": {
+    "type": "MonoRecModel",
+    "args": {
+      "pretrain_mode": 0,
+      "checkpoint_location": [
+          "saved/checkpoints/monorec_depth_ref.pth"
+      ]
+    }
+  },
+  "data_set": {
+    "type": "OxfordRobotCarDataset",
+    "args": {
+      "sequence_folders": [
+        "../data/oxford_robotcar/sample/stereo/centre"
+      ],
+      "pose_files": [
+        "../data/oxford_robotcar/sample/vo/vo.csv"
+      ],
+      "lidar_folders": [
+        "../data/oxford_robotcar/sample/ldmrs"
+      ],
+      "model_folder": "../data/oxford_robotcar/models",
+      "extrinsics_folder": "../data/oxford_robotcar/extrinsics",
+      "frame_count": 2,
+      "cutout": [
+        0,
+        0.333333333333333333333333333333333333333,
+        0,
+        0
+      ],
+      "scale": 0.5,
+      "lidar_timestamp_range": 0.25
+    }
+  }
+}

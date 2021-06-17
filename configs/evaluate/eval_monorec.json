@@ -1,0 +1,69 @@
+{
+  "name": "Eval_monorec",
+  "n_gpu": 8,
+  "timestamp_replacement": "00",
+  "models": [
+    {
+      "type": "MonoRecModel",
+      "args": {
+        "inv_depth_min_max": [
+          0.33,
+          0.0025
+        ],
+        "checkpoint_location": [
+          "saved/checkpoints/monorec_depth_ref.pth"
+        ],
+        "pretrain_mode": 0,
+        "pretrain_dropout": 0,
+        "use_stereo": false,
+        "use_mono": true,
+        "use_ssim": 1
+      }
+    }
+  ],
+  "data_loader": {
+    "type": "KittiOdometryDataloader",
+    "args": {
+      "dataset_dir": "../data/dataset",
+      "depth_folder": "image_depth_annotated",
+      "batch_size": 2,
+      "frame_count": 2,
+      "shuffle": false,
+      "validation_split": 0,
+      "num_workers": 8,
+      "sequences": [
+        "00",
+        "04",
+        "05",
+        "07"
+      ],
+      "target_image_size": [
+        256,
+        512
+      ],
+      "use_color": true,
+      "use_color_augmentation": false,
+      "use_dso_poses": true,
+      "lidar_depth": true,
+      "dso_depth": false,
+      "return_stereo": false
+    }
+  },
+  "loss": "dummy_loss",
+  "metrics": [
+    "abs_rel_sparse_metric",
+    "sq_rel_sparse_metric",
+    "rmse_sparse_metric",
+    "rmse_log_sparse_metric",
+    "a1_sparse_metric",
+    "a2_sparse_metric",
+    "a3_sparse_metric"
+  ],
+  "evaluater": {
+    "save_dir": "saved/",
+    "max_distance": 80,
+    "verbosity": 2,
+    "log_step": 20,
+    "tensorboard": false
+  }
+}

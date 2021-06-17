@@ -1,0 +1,38 @@
+{
+  "name": "Pointcloud Creation",
+  "n_gpu": 8,
+  "output_dir": "saved/pointclouds/monorec",
+  "file_name": "tmvo.ply",
+  "roi": [
+    160,
+    480,
+    40,
+    600
+  ],
+  "start": 0,
+  "end": 200,
+  "max_d": 20,
+  "use_mask": true,
+  "arch": {
+    "type": "MonoRecModel",
+    "args": {
+      "pretrain_mode": 0,
+      "checkpoint_location": [
+          "saved/checkpoints/monorec_depth_ref.pth"
+      ]
+    }
+  },
+  "data_set": {
+    "type": "TUMMonoVODataset",
+    "args": {
+      "dataset_dir": "../data/tummonovo/sequence_50_rect",
+      "frame_count": 4,
+      "scale_factor": 3,
+      "target_image_size": [
+        480,
+        640
+      ],
+      "color_augmentation": false
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Eval_monorec_oxrc",
+  "n_gpu": 8,
+  "timestamp_replacement": "00",
+  "models": [
+    {
+      "type": "MonoRecModel",
+      "args": {
+        "inv_depth_min_max": [
+          0.33,
+          0.0025
+        ],
+        "checkpoint_location": [
+          "saved/checkpoints/monorec_depth_ref.pth"
+        ],
+        "pretrain_mode": 0,
+        "pretrain_dropout": 0,
+        "use_stereo": false,
+        "use_mono": true
+      }
+    }
+  ],
+  "data_loader": {
+    "type": "OxfordRobotCarDataloader",
+    "args": {
+      "batch_size": 4,
+      "frame_count": 2,
+      "shuffle": false,
+      "validation_split": 0,
+      "num_workers": 8
+    }
+  },
+  "loss": "dummy_loss",
+  "metrics": [
+    "abs_rel_sparse_metric",
+    "sq_rel_sparse_metric",
+    "rmse_sparse_metric",
+    "rmse_log_sparse_metric",
+    "a1_sparse_metric",
+    "a2_sparse_metric",
+    "a3_sparse_metric"
+  ],
+  "evaluater": {
+    "save_dir": "saved/",
+    "max_distance": 80,
+    "verbosity": 2,
+    "log_step": 20,
+    "tensorboard": false
+  }
+}
