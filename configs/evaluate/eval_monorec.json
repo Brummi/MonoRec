@@ -49,7 +49,7 @@
       "return_stereo": false
     }
   },
-  "loss": "dummy_loss",
+  "loss": "depth_loss",
   "metrics": [
     "abs_rel_sparse_metric",
     "sq_rel_sparse_metric",

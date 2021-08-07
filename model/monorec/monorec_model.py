@@ -59,8 +59,8 @@ class MaskAugmentation(nn.Module):
     def __init__(self):
         super().__init__()
         self.transforms = nn.ModuleList([
-            K.RandomResizedCrop(size=(256, 512), scale=(.8, 1.0), ratio=(1.9, 2.1)),
-            K.RandomHorizontalFlip()
+            K.RandomHorizontalFlip(),
+            K.RandomResizedCrop(size=(256, 512), scale=(.8, 1.0), ratio=(1.9, 2.1))
         ])
 
     def single_apply(self, x):

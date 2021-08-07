@@ -1,4 +1,1 @@
-import torch
-
-def dummy_loss(data_dict, alpha=None, roi=None, options=()):
-    return {'loss': torch.tensor([0])}
+from .loss_functions.monorec_loss import mask_loss, depth_loss, mask_refinement_loss, depth_refinement_loss, depth_aux_mask_loss

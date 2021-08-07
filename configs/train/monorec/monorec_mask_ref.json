@@ -1,0 +1,156 @@
+{
+  "name": "monorec_mask_ref",
+  "n_gpu": 8,
+  "arch": {
+    "type": "MonoRecModel",
+    "args": {
+      "pretrain_mode": 0,
+      "simple_mask": false,
+      "augmentation": "depth",
+      "use_mono": true,
+      "use_stereo": false,
+      "depth_cp_loc": [
+        "saved/models/monorec_depth/00/checkpoint.pth"
+      ],
+      "mask_cp_loc": [
+        "saved/models/monorec_mask/00/checkpoint.pth"
+      ],
+      "freeze_module": []
+    }
+  },
+  "data_loader": {
+    "type": "KittiOdometryDataloader",
+    "args": {
+      "dataset_dir": "../data/dataset",
+      "depth_folder": "image_depth_sparse",
+      "batch_size": 4,
+      "frame_count": 2,
+      "shuffle": true,
+      "validation_split": 0,
+      "num_workers": 8,
+      "sequences": [
+        "01",
+        "02",
+        "06",
+        "08",
+        "09",
+        "10"
+      ],
+      "target_image_size": [
+        256,
+        512
+      ],
+      "use_color": true,
+      "use_color_augmentation": true,
+      "use_dso_poses": true,
+      "lidar_depth": false,
+      "dso_depth": true,
+      "return_stereo": true,
+      "return_mvobj_mask": 1,
+      "use_index_mask": [
+        "index_mask",
+        "index_mask_dist"
+      ]
+    }
+  },
+  "_data_loader": {
+    "type": "KittiOdometryDataloader",
+    "args": {
+      "dataset_dir": "../data/dataset",
+      "depth_folder": "image_depth_sparse",
+      "batch_size": 4,
+      "frame_count": 2,
+      "shuffle": false,
+      "validation_split": 0,
+      "num_workers": 8,
+      "sequences": [
+        "08"
+      ],
+      "target_image_size": [
+        256,
+        512
+      ],
+      "use_color": true,
+      "use_color_augmentation": true,
+      "use_dso_poses": true,
+      "lidar_depth": false,
+      "dso_depth": true,
+      "return_stereo": true,
+      "return_mvobj_mask": true,
+      "use_index_mask": [
+        "index_mask",
+        "index_mask_dist"
+      ]
+    }
+  },
+  "val_data_loader": {
+    "type": "KittiOdometryDataloader",
+    "args": {
+      "dataset_dir": "../data/dataset",
+      "depth_folder": "image_depth_annotated",
+      "batch_size": 16,
+      "frame_count": 2,
+      "shuffle": true,
+      "validation_split": 0,
+      "num_workers": 2,
+      "sequences": [
+        "00",
+        "04",
+        "05",
+        "07"
+      ],
+      "target_image_size": [
+        256,
+        512
+      ],
+      "use_color": true,
+      "use_color_augmentation": true,
+      "use_dso_poses": true,
+      "lidar_depth": true,
+      "dso_depth": false,
+      "return_stereo": true,
+      "return_mvobj_mask": 1,
+      "use_index_mask": [
+        "index_mask",
+        "index_mask_dist"
+      ]
+    }
+  },
+  "optimizer": {
+    "type": "Adam",
+    "args": {
+      "lr": 0.0001,
+      "weight_decay": 0,
+      "amsgrad": true
+    }
+  },
+  "loss": "mask_refinement_loss",
+  "metrics": [
+    "a1_sparse_metric",
+    "abs_rel_sparse_metric",
+    "rmse_sparse_metric"
+  ],
+  "lr_scheduler": {
+    "type": "StepLR",
+    "args": {
+      "step_size": 40,
+      "gamma": 0.1
+    }
+  },
+  "trainer": {
+    "compute_mono_pred": true,
+    "compute_stereo_pred": true,
+    "epochs": 1,
+    "save_dir": "saved/",
+    "save_period": 1,
+    "verbosity": 2,
+    "monitor": "min val_loss",
+    "log_step": 2400,
+    "len_epoch": 9600,
+    "val_log_step": 16,
+    "alpha": 0.5,
+    "max_distance": 80,
+    "timestamp_replacement": "00",
+    "tensorboard": true
+  }
+}
