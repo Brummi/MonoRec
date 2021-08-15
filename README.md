@@ -70,6 +70,10 @@ The auxiliary moving object masks can be downloaded from [here](https://vision.i
 ``../data/{kitti_path}/sequences/{seq_num}/mvobj_mask``. This folder structure again is ensured when 
 unpacking the zip file in the ``{kitti_path}`` directory.
 
+Finally, for mask training, we also use index masks for the training data, which can be downloaded from [here](https://vision.in.tum.de/_media/research/monorec/index_masks.zip). They should be placed under 
+``../data/{kitti_path}/sequences/{seq_num}/``. This folder structure again is ensured when 
+unpacking the zip file in the ``{kitti_path}`` directory.
+
 ### Oxford RobotCar
 
 
