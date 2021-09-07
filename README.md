@@ -33,7 +33,7 @@ conda env create -f environment.yml
 
 We provide a sample from the KITTI Odometry test set and a script to run MonoRec on it in ``example/``. 
 To download the pretrained model and put it into the right place, run ``download_model.sh``. 
-You can manually do this by can by downloading the weights from [here](https://vision.in.tum.de/_media/research/monorec/monorec_depth_ref.pth.zip) 
+You can manually do this by downloading the weights from [here](https://vision.in.tum.de/_media/research/monorec/monorec_depth_ref.pth.zip) 
 and unpacking the file to ``saved/checkpoints/monorec_depth_ref.pth``.
 The example script will plot the keyframe, depth prediction and mask prediction.
 
