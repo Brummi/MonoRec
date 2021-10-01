@@ -20,7 +20,7 @@ class KittiOdometryDataset(Dataset):
                  use_color_augmentation=False, lidar_depth=False, dso_depth=True, annotated_lidar=True, return_stereo=False, return_mvobj_mask=False, use_index_mask=()):
         """
         Dataset implementation for KITTI Odometry.
-        :param dataset_dir: Top level folder for KITTI Odometry (should contain folders sequences, poses, poses_dso (if available)
+        :param dataset_dir: Top level folder for KITTI Odometry (should contain folders sequences, poses, poses_dvso (if available)
         :param frame_count: Number of frames used per sample (excluding the keyframe). By default, the keyframe is in the middle of those frames. (Default=2)
         :param sequences: Which sequences to use. Should be tuple of strings, e.g. ("00", "01", ...)
         :param depth_folder: The folder within the sequence folder that contains the depth information (e.g. sequences/00/{depth_folder})
@@ -29,7 +29,7 @@ class KittiOdometryDataset(Dataset):
         :param dilation: Spacing between the frames (Default 1)
         :param offset_d: Index offset for frames (offset_d=0 means keyframe is centered). (Default=0)
         :param use_color: Use color (camera 2) or greyscale (camera 0) images (default=True)
-        :param use_dso_poses: Use poses provided by d(v)so instead of KITTI poses. Requires poses_dso folder. (Default=True)
+        :param use_dso_poses: Use poses provided by d(v)so instead of KITTI poses. Requires poses_dvso folder. (Default=True)
         :param use_color_augmentation: Use color jitter augmentation. The same transformation is applied to all frames in a sample. (Default=False)
         :param lidar_depth: Use depth information from (annotated) velodyne data. (Default=False)
         :param dso_depth: Use depth information from d(v)so. (Default=True)
@@ -95,7 +95,7 @@ class KittiOdometryDataset(Dataset):
         self.use_color_augmentation = use_color_augmentation
         if self.use_dso_poses:
             for dataset in self._datasets:
-                dataset.pose_path = self.dataset_dir / "poses_dso"
+                dataset.pose_path = self.dataset_dir / "poses_dvso"
                 dataset._load_poses()
         if self.use_color_augmentation:
             self.color_transform = ColorJitterMulti(brightness=.2, contrast=.2, saturation=.2, hue=.1)
