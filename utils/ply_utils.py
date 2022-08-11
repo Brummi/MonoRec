@@ -39,7 +39,7 @@ class PLYSaver(torch.nn.Module):
         if self.roi is not None:
             mask[:, :, :self.roi[0], :] = False
             mask[:, :, self.roi[1]:, :] = False
-            mask[:, :, :, self.roi[2]] = False
+            mask[:, :, :, :self.roi[2]] = False
             mask[:, :, :, self.roi[3]:] = False
         if self.dropout > 0:
             mask = mask & (torch.rand_like(depth) > self.dropout)
