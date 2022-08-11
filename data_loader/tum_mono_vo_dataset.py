@@ -227,7 +227,7 @@ class TUMMonoVODataset(Dataset):
 
     def build_poses(self):
         ts = torch.tensor(self._result[:, 1:4])
-        qs = torch.tensor(self._result[:, [7, 4, 5, 6]])
+        qs = torch.tensor(self._result[:, 4:])
         rs = torch.eye(4).unsqueeze(0).repeat(qs.shape[0], 1, 1)
         rs[:, :3, :3] = torch.tensor(Rotation.from_quat(qs).as_matrix())
         rs[:, :3, 3] = ts * self.scale_factor

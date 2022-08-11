@@ -117,7 +117,7 @@ class TUMRGBDDataset(Dataset):
         data = np.genfromtxt(lines, dtype=np.float64)
         times = data[:, 0]
         ts = torch.tensor(data[:, 1:4])
-        qs = torch.tensor(data[:, [7, 4, 5, 6]])
+        qs = torch.tensor(data[:, 4:])
         rs = torch.eye(4).unsqueeze(0).repeat(qs.shape[0], 1, 1)
         rs[:, :3, :3] = torch.tensor(Rotation.from_quat(qs).as_matrix())
         rs[:, :3, 3] = ts
