@@ -12,7 +12,7 @@
       "depth_cp_loc": [
         "saved/models/monorec_depth/00/checkpoint.pth"
       ],
-      "att_cp_loc": [
+      "mask_cp_loc": [
         "saved/models/monorec_mask_ref/00/checkpoint.pth"
       ],
       "freeze_module": [
