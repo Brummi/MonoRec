@@ -50,6 +50,10 @@ def main():
             cam = name[-16]
             img = name[-10:]
             if cam == '2' and drive in drives:
+                if drive == '2011_09_30_drive_0028':
+                    if int(img.split('.')[0]) < 1100:
+                        continue
+                    img = f"{int(img.split('.')[0])-1100:06d}.png"
                 to = output / "sequences" / mapping[drive] / depth_folder / img
                 print(name, " -> ", to)
                 with depth_archive.open(name) as i, open(to, 'wb') as o:
